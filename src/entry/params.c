@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 #define _GNU_SOURCE
+#include <assert.h>
 #include <stdio.h>
 #include <locale.h>
 #include <getopt.h>
@@ -281,11 +282,13 @@ CR_API int criterion_handle_args(int argc, char *argv[],
     const char *outputs = getenv("CRITERION_OUTPUTS");
     if (outputs) {
         char *out = strdup(outputs);
+        assert(out != NULL);
         char *buf = NULL;
         strtok_r(out, ",", &buf);
 
         for (char *s = out; s; s = strtok_r(NULL, ",", &buf)) {
             s = strdup(s);
+            assert(s != NULL);
             char *buf2      = NULL;
             char *provider  = strtok_r(s, ":", &buf2);
             char *path      = strtok_r(NULL, ":", &buf2);
