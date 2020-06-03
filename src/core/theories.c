@@ -76,6 +76,7 @@ void cr_theory_push_arg(struct criterion_theory_context *ctx, bool is_float, siz
 struct criterion_theory_context *cr_theory_init(void)
 {
     struct criterion_theory_context *ctx = malloc(sizeof (struct criterion_theory_context));
+    assert(ctx != NULL);
 
     ctx->vm = dcNewCallVM(4096);
     dcMode(ctx->vm, DC_CALL_C_DEFAULT);
